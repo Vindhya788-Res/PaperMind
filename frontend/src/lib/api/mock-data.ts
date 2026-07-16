@@ -157,6 +157,30 @@ export const mockExperiments: Experiment[] = [
     status: "running",
     createdAt: "2026-07-15T07:30:00Z",
   },
+  {
+    id: "exp-003",
+    name: "Reranker ablation",
+    embeddingModel: "BGE-large-en-v1.5",
+    chunkSize: 512,
+    overlap: 128,
+    retriever: "Dense + cross-encoder rerank",
+    llm: "claude-opus-4-8",
+    metrics: { recall: 0.89, precision: 0.83, faithfulness: 0.92 },
+    status: "completed",
+    createdAt: "2026-07-12T09:15:00Z",
+  },
+  {
+    id: "exp-004",
+    name: "Small-chunk recall test",
+    embeddingModel: "E5-base-v2",
+    chunkSize: 128,
+    overlap: 16,
+    retriever: "Dense (cosine)",
+    llm: "claude-sonnet-5",
+    metrics: { recall: 0.72, precision: 0.68, faithfulness: 0.81 },
+    status: "queued",
+    createdAt: "2026-07-16T06:00:00Z",
+  },
 ];
 
 export const mockDashboard: Dashboard = {
