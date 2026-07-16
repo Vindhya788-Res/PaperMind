@@ -4,12 +4,14 @@ import type {
   Paper,
   PaperDetail,
   Project,
+  ProjectDetail,
   SearchFilters,
   SearchMode,
   SearchResult,
 } from "@/types";
 import { mockDashboard, mockExperiments, mockPapers, mockProjects } from "./mock-data";
 import { buildPaperDetail } from "./paper-detail";
+import { buildProjectDetail } from "./project-detail";
 import { runSearch } from "./search";
 
 /**
@@ -39,6 +41,11 @@ export const api = {
   },
   search: (query: string, mode: SearchMode, filters: SearchFilters): Promise<SearchResult[]> =>
     delay(runSearch(query, mode, filters)),
+  getProjectDetail: (id: string): Promise<ProjectDetail> => {
+    const project = mockProjects.find((item) => item.id === id);
+    if (!project) return Promise.reject(new Error(`Project not found: ${id}`));
+    return delay(buildProjectDetail(project));
+  },
 };
 
 export const queryKeys = {
@@ -47,6 +54,7 @@ export const queryKeys = {
   projects: ["projects"] as const,
   experiments: ["experiments"] as const,
   paperDetail: (id: string) => ["paper-detail", id] as const,
+  projectDetail: (id: string) => ["project-detail", id] as const,
   search: (query: string, mode: SearchMode, filters: SearchFilters) =>
     ["search", query, mode, filters] as const,
 };

@@ -38,6 +38,20 @@ export interface Experiment {
   createdAt: string;
 }
 
+export interface ProjectStats {
+  papers: number;
+  notes: number;
+  experiments: number;
+  chunks: number;
+}
+
+export interface ProjectDetail {
+  project: Project;
+  stats: ProjectStats;
+  recentPapers: Paper[];
+  notes: string;
+}
+
 export type ActivityKind = "upload" | "search" | "chat" | "experiment" | "note" | "project";
 
 export interface ActivityItem {
