@@ -1,0 +1,66 @@
+/** Shared domain types for the PaperMind workspace. */
+
+export interface Paper {
+  id: string;
+  title: string;
+  authors: string[];
+  year: number;
+  venue: string;
+  tags: string[];
+  uploadedAt: string;
+  favorite: boolean;
+  pageCount: number;
+  abstract?: string;
+}
+
+export interface Project {
+  id: string;
+  name: string;
+  description: string;
+  paperCount: number;
+  updatedAt: string;
+  pinned: boolean;
+  color: string;
+}
+
+export type ExperimentStatus = "queued" | "running" | "completed" | "failed";
+
+export interface Experiment {
+  id: string;
+  name: string;
+  embeddingModel: string;
+  chunkSize: number;
+  overlap: number;
+  retriever: string;
+  llm: string;
+  metrics: Record<string, number>;
+  status: ExperimentStatus;
+  createdAt: string;
+}
+
+export type ActivityKind = "upload" | "search" | "chat" | "experiment" | "note" | "project";
+
+export interface ActivityItem {
+  id: string;
+  kind: ActivityKind;
+  title: string;
+  timestamp: string;
+}
+
+export interface DashboardStats {
+  papers: number;
+  chunks: number;
+  embeddings: number;
+  queries: number;
+  experiments: number;
+  storageBytes: number;
+}
+
+export interface Dashboard {
+  stats: DashboardStats;
+  recentPapers: Paper[];
+  recentProjects: Project[];
+  pinnedProjects: Project[];
+  recentSearches: string[];
+  activity: ActivityItem[];
+}

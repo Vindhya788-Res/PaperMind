@@ -1,0 +1,156 @@
+import type { Dashboard, Experiment, Paper, Project } from "@/types";
+
+export const mockProjects: Project[] = [
+  {
+    id: "prj-rag-survey",
+    name: "RAG Retrieval Survey",
+    description: "Comparing chunking and retrieval strategies for scientific QA.",
+    paperCount: 42,
+    updatedAt: "2026-07-14T09:20:00Z",
+    pinned: true,
+    color: "#4f46e5",
+  },
+  {
+    id: "prj-scidoc",
+    name: "Scientific Document Understanding",
+    description: "Structure extraction and evidence synthesis across ML papers.",
+    paperCount: 28,
+    updatedAt: "2026-07-11T16:05:00Z",
+    pinned: true,
+    color: "#0ea5e9",
+  },
+  {
+    id: "prj-llm-eval",
+    name: "LLM Evaluation Methods",
+    description: "Faithfulness and citation accuracy metrics for generated reviews.",
+    paperCount: 17,
+    updatedAt: "2026-07-08T11:40:00Z",
+    pinned: false,
+    color: "#f59e0b",
+  },
+];
+
+export const mockPapers: Paper[] = [
+  {
+    id: "pap-attention",
+    title: "Attention Is All You Need",
+    authors: ["Vaswani", "Shazeer", "Parmar"],
+    year: 2017,
+    venue: "NeurIPS",
+    tags: ["transformers", "attention"],
+    uploadedAt: "2026-07-15T08:00:00Z",
+    favorite: true,
+    pageCount: 15,
+  },
+  {
+    id: "pap-rag",
+    title: "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+    authors: ["Lewis", "Perez", "Piktus"],
+    year: 2020,
+    venue: "NeurIPS",
+    tags: ["rag", "retrieval"],
+    uploadedAt: "2026-07-14T13:30:00Z",
+    favorite: true,
+    pageCount: 19,
+  },
+  {
+    id: "pap-bge",
+    title: "C-Pack: Packed Resources for General Chinese Embeddings",
+    authors: ["Xiao", "Liu", "Zhang"],
+    year: 2023,
+    venue: "SIGIR",
+    tags: ["embeddings", "benchmark"],
+    uploadedAt: "2026-07-13T10:15:00Z",
+    favorite: false,
+    pageCount: 12,
+  },
+  {
+    id: "pap-colbert",
+    title: "ColBERT: Efficient and Effective Passage Search via Late Interaction",
+    authors: ["Khattab", "Zaharia"],
+    year: 2020,
+    venue: "SIGIR",
+    tags: ["retrieval", "late-interaction"],
+    uploadedAt: "2026-07-12T18:45:00Z",
+    favorite: false,
+    pageCount: 10,
+  },
+];
+
+export const mockExperiments: Experiment[] = [
+  {
+    id: "exp-001",
+    name: "Fixed vs. semantic chunking",
+    embeddingModel: "BGE-large-en-v1.5",
+    chunkSize: 512,
+    overlap: 64,
+    retriever: "Dense (cosine)",
+    llm: "claude-opus-4-8",
+    metrics: { recall: 0.81, precision: 0.74, faithfulness: 0.88 },
+    status: "completed",
+    createdAt: "2026-07-13T12:00:00Z",
+  },
+  {
+    id: "exp-002",
+    name: "Hybrid retrieval sweep",
+    embeddingModel: "E5-mistral-7b",
+    chunkSize: 256,
+    overlap: 32,
+    retriever: "Hybrid (BM25 + dense)",
+    llm: "claude-sonnet-5",
+    metrics: { recall: 0.86, precision: 0.79, faithfulness: 0.9 },
+    status: "running",
+    createdAt: "2026-07-15T07:30:00Z",
+  },
+];
+
+export const mockDashboard: Dashboard = {
+  stats: {
+    papers: 87,
+    chunks: 12480,
+    embeddings: 12480,
+    queries: 341,
+    experiments: 9,
+    storageBytes: 734003200,
+  },
+  recentPapers: mockPapers,
+  recentProjects: mockProjects,
+  pinnedProjects: mockProjects.filter((project) => project.pinned),
+  recentSearches: [
+    "contrastive learning for retrieval",
+    "citation faithfulness metrics",
+    "long-document chunking strategies",
+  ],
+  activity: [
+    {
+      id: "act-1",
+      kind: "upload",
+      title: "Uploaded 'Attention Is All You Need'",
+      timestamp: "2026-07-15T08:01:00Z",
+    },
+    {
+      id: "act-2",
+      kind: "experiment",
+      title: "Started 'Hybrid retrieval sweep'",
+      timestamp: "2026-07-15T07:30:00Z",
+    },
+    {
+      id: "act-3",
+      kind: "search",
+      title: "Searched 'citation faithfulness metrics'",
+      timestamp: "2026-07-14T19:12:00Z",
+    },
+    {
+      id: "act-4",
+      kind: "chat",
+      title: "Asked about ColBERT late interaction",
+      timestamp: "2026-07-14T15:48:00Z",
+    },
+    {
+      id: "act-5",
+      kind: "note",
+      title: "Note linked to 'Retrieval-Augmented Generation'",
+      timestamp: "2026-07-14T14:03:00Z",
+    },
+  ],
+};
