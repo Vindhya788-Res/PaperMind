@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "papermind"
+version = "0.0.0"
+description = "An AI-powered scientific literature understanding platform (RAG for research papers)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary" }
+authors = [{ name = "Vindi" }]
+keywords = ["rag", "nlp", "llm", "information-retrieval", "scientific-literature"]
+
+# Runtime dependencies are pinned in requirements.txt (source of truth for the
+# pip + venv workflow). Only the abstract, unpinned set is declared here so the
+# package is installable in isolation.
+dependencies = [
+    "pydantic>=2.6",
+    "pydantic-settings>=2.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.5",
+    "mypy>=1.10",
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "pre-commit>=3.7",
+]
+
+[tool.setuptools.packages.find]
+where = ["backend"]
+include = ["papermind*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["backend", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "A", "C4", "SIM", "RUF"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["papermind"]
+
+[tool.mypy]
+python_version = "3.11"
+mypy_path = "backend"
+packages = ["papermind"]
+strict = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+warn_return_any = true
+show_error_codes = true
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+addopts = "-ra --strict-markers --cov=papermind --cov-report=term-missing"
+pythonpath = ["backend"]
