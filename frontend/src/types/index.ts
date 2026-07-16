@@ -56,6 +56,35 @@ export interface DashboardStats {
   storageBytes: number;
 }
 
+export interface TocEntry {
+  title: string;
+  page: number;
+}
+
+export interface Citation {
+  id: string;
+  label: string;
+  text: string;
+  page: number;
+}
+
+export interface PaperSummary {
+  executive: string;
+  bullets: string[];
+  contributions: string[];
+  methodology: string;
+  limitations: string;
+  futureWork: string;
+}
+
+export interface PaperDetail {
+  paper: Paper;
+  toc: TocEntry[];
+  citations: Citation[];
+  summary: PaperSummary;
+  suggestedQuestions: string[];
+}
+
 export interface Dashboard {
   stats: DashboardStats;
   recentPapers: Paper[];

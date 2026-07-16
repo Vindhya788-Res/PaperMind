@@ -1,5 +1,6 @@
-import type { Dashboard, Experiment, Paper, Project } from "@/types";
+import type { Dashboard, Experiment, Paper, PaperDetail, Project } from "@/types";
 import { mockDashboard, mockExperiments, mockPapers, mockProjects } from "./mock-data";
+import { buildPaperDetail } from "./paper-detail";
 
 /**
  * Data-access layer for the workspace.
@@ -21,6 +22,11 @@ export const api = {
   getPapers: (): Promise<Paper[]> => delay(mockPapers),
   getProjects: (): Promise<Project[]> => delay(mockProjects),
   getExperiments: (): Promise<Experiment[]> => delay(mockExperiments),
+  getPaperDetail: (id: string): Promise<PaperDetail> => {
+    const paper = mockPapers.find((item) => item.id === id);
+    if (!paper) return Promise.reject(new Error(`Paper not found: ${id}`));
+    return delay(buildPaperDetail(paper));
+  },
 };
 
 export const queryKeys = {
@@ -28,4 +34,5 @@ export const queryKeys = {
   papers: ["papers"] as const,
   projects: ["projects"] as const,
   experiments: ["experiments"] as const,
+  paperDetail: (id: string) => ["paper-detail", id] as const,
 };
