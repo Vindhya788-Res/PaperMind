@@ -2,6 +2,8 @@
 
 import { Bell, PanelLeft, Search, Settings, Upload } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { ProjectSelector } from "@/components/layout/project-selector";
@@ -20,8 +22,16 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { useUiStore } from "@/stores/ui-store";
 
 export function TopNav() {
+  const router = useRouter();
   const toggleSidebar = useUiStore((state) => state.toggleSidebar);
   const openUpload = useUiStore((state) => state.openUpload);
+  const [search, setSearch] = useState("");
+
+  function submitSearch() {
+    const trimmed = search.trim();
+    if (!trimmed) return;
+    router.push(`/search?q=${encodeURIComponent(trimmed)}`);
+  }
 
   return (
     <header className="sticky top-0 z-30 flex h-14 shrink-0 items-center gap-3 border-b border-border bg-background/80 px-3 backdrop-blur supports-[backdrop-filter]:bg-background/60 sm:px-4">
@@ -37,9 +47,17 @@ export function TopNav() {
 
       <ProjectSelector />
 
-      <div className="relative ml-1 hidden max-w-md flex-1 md:block">
+      <form
+        className="relative ml-1 hidden max-w-md flex-1 md:block"
+        onSubmit={(event) => {
+          event.preventDefault();
+          submitSearch();
+        }}
+      >
         <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
         <Input
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
           placeholder="Search papers, notes, and projects…"
           className="h-9 pl-9"
           aria-label="Global search"
@@ -47,7 +65,7 @@ export function TopNav() {
         <kbd className="pointer-events-none absolute right-2.5 top-1/2 hidden -translate-y-1/2 rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground lg:inline-block">
           ⌘K
         </kbd>
-      </div>
+      </form>
 
       <div className="ml-auto flex items-center gap-1">
         <Button size="sm" className="hidden sm:inline-flex" onClick={openUpload}>

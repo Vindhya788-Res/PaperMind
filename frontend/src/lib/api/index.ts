@@ -1,6 +1,16 @@
-import type { Dashboard, Experiment, Paper, PaperDetail, Project } from "@/types";
+import type {
+  Dashboard,
+  Experiment,
+  Paper,
+  PaperDetail,
+  Project,
+  SearchFilters,
+  SearchMode,
+  SearchResult,
+} from "@/types";
 import { mockDashboard, mockExperiments, mockPapers, mockProjects } from "./mock-data";
 import { buildPaperDetail } from "./paper-detail";
+import { runSearch } from "./search";
 
 /**
  * Data-access layer for the workspace.
@@ -27,6 +37,8 @@ export const api = {
     if (!paper) return Promise.reject(new Error(`Paper not found: ${id}`));
     return delay(buildPaperDetail(paper));
   },
+  search: (query: string, mode: SearchMode, filters: SearchFilters): Promise<SearchResult[]> =>
+    delay(runSearch(query, mode, filters)),
 };
 
 export const queryKeys = {
@@ -35,4 +47,6 @@ export const queryKeys = {
   projects: ["projects"] as const,
   experiments: ["experiments"] as const,
   paperDetail: (id: string) => ["paper-detail", id] as const,
+  search: (query: string, mode: SearchMode, filters: SearchFilters) =>
+    ["search", query, mode, filters] as const,
 };

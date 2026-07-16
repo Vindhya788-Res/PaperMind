@@ -56,6 +56,28 @@ export interface DashboardStats {
   storageBytes: number;
 }
 
+export type SearchMode = "semantic" | "keyword" | "hybrid" | "metadata";
+
+export interface SearchFilters {
+  author?: string;
+  year?: number;
+  venue?: string;
+}
+
+export interface SearchResult {
+  id: string;
+  paperId: string;
+  title: string;
+  authors: string[];
+  year: number;
+  venue: string;
+  tags: string[];
+  score: number;
+  summary: string;
+  snippet: string;
+  page: number;
+}
+
 export interface TocEntry {
   title: string;
   page: number;
