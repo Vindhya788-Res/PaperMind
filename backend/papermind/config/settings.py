@@ -64,6 +64,11 @@ class Settings(BaseSettings):
         description="Directory for local data artifacts (parsed documents, indices).",
     )
 
+    database_url: str = Field(
+        default="postgresql+psycopg://postgres:postgres@localhost:5432/papermind",
+        description="SQLAlchemy database URL. Override in .env with your Postgres password.",
+    )
+
     api_host: str = Field(
         default="127.0.0.1",
         description="Host interface the API server binds to.",

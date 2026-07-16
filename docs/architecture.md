@@ -27,6 +27,7 @@ PDF -> Ingestion -> Chunking -> Embeddings -> Vector Store -> Retrieval -> LLM -
 | `retrieval`   | Vector store, search, reranking.                            | Planned  |
 | `llm`         | Citation-aware answer generation.                           | Planned  |
 | `api`         | FastAPI application exposing the pipeline.                   | Present  |
+| `db`          | SQLAlchemy models, session, Alembic migrations, seed.       | Present  |
 
 ## 4. Design principles
 

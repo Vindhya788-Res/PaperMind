@@ -2,16 +2,9 @@
 
 from __future__ import annotations
 
-import pytest
 from fastapi.testclient import TestClient
 
 from papermind import __version__
-from papermind.api.app import create_app
-
-
-@pytest.fixture
-def client() -> TestClient:
-    return TestClient(create_app())
 
 
 def test_health_ok(client: TestClient) -> None:
@@ -36,7 +29,7 @@ def test_papers_endpoint_returns_camel_case(client: TestClient) -> None:
     assert response.status_code == 200
     papers = response.json()
     assert isinstance(papers, list)
-    assert papers, "expected sample papers"
+    assert papers, "expected seeded papers"
     first = papers[0]
     # Contract check: JSON is camelCase to match the frontend data layer.
     assert "pageCount" in first
