@@ -1,5 +1,7 @@
 # Runtime dependencies (pinned for reproducibility).
-# Heavy Phase-1 libraries (pymupdf, chromadb, fastapi, sentence-transformers,
-# ragas) are deliberately deferred to the milestone that first uses them.
+# Heavy Phase-1 libraries (pymupdf, chromadb, sentence-transformers, ragas)
+# are deliberately deferred to the milestone that first uses them.
 pydantic==2.11.7
 pydantic-settings==2.10.1
+fastapi==0.115.6
+uvicorn[standard]==0.34.0

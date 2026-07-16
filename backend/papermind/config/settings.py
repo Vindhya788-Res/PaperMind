@@ -64,6 +64,15 @@ class Settings(BaseSettings):
         description="Directory for local data artifacts (parsed documents, indices).",
     )
 
+    api_prefix: str = Field(
+        default="/api",
+        description="URL prefix under which the HTTP API is mounted.",
+    )
+    cors_origins: list[str] = Field(
+        default_factory=lambda: ["http://localhost:3000"],
+        description="Origins permitted to call the API (the frontend dev server).",
+    )
+
     openai_api_key: SecretStr | None = Field(
         default=None,
         description="Reserved for future LLM/embedding integrations.",

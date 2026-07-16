@@ -1,4 +1,5 @@
-"""FastAPI application exposing the RAG pipeline.
+"""FastAPI application exposing the RAG pipeline."""
 
-Populated in a later milestone.
-"""
+from papermind.api.app import app, create_app
+
+__all__ = ["app", "create_app"]

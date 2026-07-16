@@ -26,7 +26,7 @@ PDF -> Ingestion -> Chunking -> Embeddings -> Vector Store -> Retrieval -> LLM -
 | `embeddings`  | Embedding model interfaces and implementations.             | Planned  |
 | `retrieval`   | Vector store, search, reranking.                            | Planned  |
 | `llm`         | Citation-aware answer generation.                           | Planned  |
-| `api`         | FastAPI application exposing the pipeline.                   | Planned  |
+| `api`         | FastAPI application exposing the pipeline.                   | Present  |
 
 ## 4. Design principles
 
