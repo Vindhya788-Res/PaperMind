@@ -64,6 +64,14 @@ class Settings(BaseSettings):
         description="Directory for local data artifacts (parsed documents, indices).",
     )
 
+    api_host: str = Field(
+        default="127.0.0.1",
+        description="Host interface the API server binds to.",
+    )
+    api_port: int = Field(
+        default=8001,
+        description="Port the API server binds to (8000 is often taken on Windows).",
+    )
     api_prefix: str = Field(
         default="/api",
         description="URL prefix under which the HTTP API is mounted.",

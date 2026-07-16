@@ -230,7 +230,14 @@ pytest
 
 # 5. (Optional) enable git hooks
 pre-commit install
+
+# 6. Run the API server (host/port come from settings; default 127.0.0.1:8001)
+python -m papermind.api
+# Swagger UI: http://localhost:8001/docs
 ```
+
+> The API defaults to **port 8001** (8000 is frequently occupied on Windows). Override with
+> `PAPERMIND_API_PORT` in `.env`.
 
 ## Frontend
 
