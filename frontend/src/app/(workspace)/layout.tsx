@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { LeftSidebar } from "@/components/layout/left-sidebar";
 import { RightSidebar } from "@/components/layout/right-sidebar";
 import { TopNav } from "@/components/layout/top-nav";
+import { UploadDialogHost } from "@/components/upload/upload-dialog-host";
 
 export default function WorkspaceLayout({ children }: { children: ReactNode }) {
   return (
@@ -15,6 +16,7 @@ export default function WorkspaceLayout({ children }: { children: ReactNode }) {
           <RightSidebar />
         </div>
       </div>
+      <UploadDialogHost />
     </div>
   );
 }
